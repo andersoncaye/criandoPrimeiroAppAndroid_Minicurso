@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MiniCurso</string>
+    <string name="tv_name">Anderson Caye - Minicurso Android</string>
+    <string name="tv_descricao">Criando minha primeira aplicação Android/Java</string>
+    <string name="bt_enviar">ENVIAR INFORMAÇÃO</string>
+    <string name="hint_et_info">Sua Informação Aqui...</string>
+    <string name="tv_instrucao">Separe as informações com virgula ( , )</string>
 </resources>
