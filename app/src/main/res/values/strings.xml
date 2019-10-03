@@ -6,4 +6,7 @@
     <string name="bt_mostrar">MOSTRAR ITENS</string>
     <string name="hint_et_info">Insira seu item aqui</string>
     <string name="tv_instrucao">Descreva o item logo abaixo</string>
+    <string name="bt_remover">REMOVER REGISTRO</string>
+    <string name="bt_voltar">VOLTAR</string>
+    <string name="tv_dica">Para remover mantenha o item pressionado</string>
 </resources>
