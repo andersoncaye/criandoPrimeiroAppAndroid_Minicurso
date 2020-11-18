@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class MainActivityTable extends AppCompatActivity {
 
+    //declaracao das variaveis
     ArrayList<String> lista;
     ListView lvItens;
     Button btVoltar;

@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //declaracao das variaveis
     ArrayList<String> lista;
-
     Button btSalvar;
     Button btMostar;
     TextView ptCampoItem;
@@ -29,32 +29,40 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Verificar se a permissão foi concedida
+        //Verificar se a permissao foi concedida
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             return;
         }
+        //menssagem
+        Toast.makeText(getApplicationContext(), "Bem-Vindo!", Toast.LENGTH_SHORT).show();
 
+        //inicializar o arquivo para leitura e gravacao
         lista = DAOArquivo.carregarArquivo();
 
+        //inicializar os campos, botoes e labels
         btSalvar = (Button) findViewById(R.id.bt_salvar);
         btMostar = (Button) findViewById(R.id.bt_mostrar);
         ptCampoItem = (TextView) findViewById(R.id.pt_campo_item);
         tvContador = (TextView) findViewById(R.id.tv_contador);
+        tvContador.setText("Total de itens cadastrados "+lista.size()); //R.string.app_name);
 
-        tvContador.setText("Total de itens cadastrados "+lista.size());
-
+        //obter a acao de um clique do botao SALVAR
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //verifica se o compo nao esta vazio
                 if ( !ptCampoItem.getText().toString().isEmpty() ) {
-                    ArrayList<String> temp = lista;
-                    temp.add(ptCampoItem.getText().toString());
+                    //add o conteudo do campo na lista
+                    lista.add(ptCampoItem.getText().toString());
+                    //salva a informacao no arquivo e retorna se deu certo ou não
                     boolean situacao = DAOArquivo.salvarArquivo(lista);
                     if (situacao){
+                        //atualiza o total de itens registrados
                         tvContador.setText("Total de itens cadastrados "+lista.size());
-                        lista = temp;
+                        //limpa o campo
                         ptCampoItem.setText("");
+                        //mensagem de feedback para o usuario
                         Toast.makeText(getApplicationContext(), "Item salvo com sucesso!", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Ops! Erro ao salvar o item!", Toast.LENGTH_SHORT).show();
@@ -64,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //obter a acao de um clique do botao MOSTRAR
         btMostar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //preparar para abrir uma nova janela, uma outra activity
                 Intent it = new Intent(MainActivity.this, MainActivityTable.class);
                 it.putStringArrayListExtra("lista", lista);
 //                Bundle bu = new Bundle();
