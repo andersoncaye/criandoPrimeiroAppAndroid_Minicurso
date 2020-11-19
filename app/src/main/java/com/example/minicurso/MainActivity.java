@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //preparar para abrir uma nova janela, uma outra activity
                 Intent it = new Intent(MainActivity.this, MainActivityTable.class);
+                //enviar a lista para a tela que sera chamada
                 it.putStringArrayListExtra("lista", lista);
 //                Bundle bu = new Bundle();
 //                bu.putStringArrayList("lista", lista);
